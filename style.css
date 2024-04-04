@@ -1,88 +1,103 @@
-* {
-    margin: 0;
-    padding: 0;
-    background-color: black;
-    color: white;
-    scrollbar-width: none;
-  }
-  #myh3Id {
-    font-weight: 900;
-    font-size: 25px;
-    margin-top: 20px;
-    margin-left: 30px;
-  }
-  .inputDiv {
-    display: flex;
-    box-sizing: border-box;
-    padding-left: 10px;
-    margin-top: 20px;
-  }
-  .ourInputs{
-    border: 2px solid transparent;
-    margin-left: 20px;
-  
-  }
-  .ourInputs:hover {
-    border: 2px solid red;
-  }
-  .inputDiv input{
-    width: 300px;
-    height: 40px;
-    margin-top: 10px;
-  }
-  .inputDiv input::placeholder{
-    margin-left: 20px;
-  }
-  #btnadd{
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 170px;
-    height:30px;
-    margin-top: 20px;
-    margin-left: 30px;
-  }
-  .result{
-    /* background-color: orange; */
-    margin-left: 30px;
-    margin-top: 5px;
-    height: auto;
-    width: 75vw;
-    /* overflow: scroll; */
-  }
-  #headingh5{
-    margin-left: 30px;
-    margin-top: 10px;
-  }
-  .message{
-    height: 30px;
-    color: red;
-    width: 75vw;
-    margin-left: 30px;
-    margin-top: 10px;
-    /* background-color: #623636; */
-  }
-  .liofEmployee{
-    /* background-color: whitesmoke; */
-    color: blueviolet;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 50px;
-    width: 98%;
-    margin:  10px;
-  }
-  .my-btn-class{
-    flex-direction: row-reverse;
-    background-color: white;
-  }
-  .listOfEmployees{
-    display: flex;
-    width: 80%;
-    height: 30px;
-    align-items: center;
-    border: 1px solid white;
-    border-radius: 5px;
-    justify-content: space-between;
-  }
+body {
+  background-color: black;
+  color: white;
+  font-family: Arial, sans-serif;
+}
+.form-container {
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+}
+.heading {
+  width: 80%;
+  margin: 0 auto;
+  padding-top: 20px;
+  font-size: large;
+}
+h3 {
+  font-weight: 100;
+}
+.form-container > div {
+  flex: 0 0 calc(33.33% - 20px);
+  margin-right: 20px;
+}
+.form-container label {
+  display: block;
+  font-size: small;
+  margin-bottom: 5px;
+}
+.form-container input[type="text"], .form-container input[type="number"] {
+  width: calc(100% - 10px);
+  padding: 5px;
+  margin-bottom: 10px;
+  border: 1px solid white;
+  background-color: black;
+  color: white;
+  border-radius: 2px;
+}
+/* .form-container input[type="submit"] {
+  width: 150px;
+  padding: 10px;
+  margin-top: 10px;
+  border: none;
+  background-color: white;
+  color: black;
+  cursor: pointer;
+  border-radius: 2px;
+} */
+.form-container button {
+  width: 150px;
+  padding: 12px 10px;
+  margin-top: 10px;
+  border: none;
+  background-color: white;
+  color: black;
+  cursor: pointer;
+  border-radius: 2px;
+}
+.success-message {
+  color: green;
+  margin-bottom: 10px;
+  width: 80%;
+  margin: 0 auto;
+  padding-top: 20px;
+}
+.error-message {
+  color: red;
+  margin-bottom: 10px;
+  width: 80%;
+  margin: 0 auto;
+  padding-top: 20px;
+}
+.employee-list {
+  width: 80%;
+  margin: 0 auto;
+  padding: 10px;
+  /* margin-top: 20px; */
+}
+.employee {
+  width: 50%;
+  font-size: small;
+  margin-bottom: 10px;
+  padding: 10px;
+  border-bottom: 1px solid white;
+  display: flex;
+  justify-content: space-between;
+}
+.employee button {
+  background-color: white;
+  color: black;
+  width: 100px;
+  border: none;
+  /* padding: 5px 5px; */
+  cursor: pointer;
+  border-radius: 2px;
+}
+#employees-message {
+  width: 80%;
+  margin: 0 auto;
+  font-size: small;
+  color: #ccc;
+  font-weight: 100;
+}

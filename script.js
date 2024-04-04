@@ -1,88 +1,53 @@
-loader();
+const form = document.getElementById('employee-form');
+const successMessage = document.getElementById('success-message');
+const errorMessage = document.getElementById('error-message');
+const employeeList = document.getElementById('employee-list');
+const employeesMessage = document.getElementById('employees-message');
+let employees = [];
 
-// console.log(inputItems)
+form.addEventListener('submit', function (e) {
+        e.preventDefault();
 
-function loader() {
-  let root = document.querySelector("#root");
-  addingh3();
-  inputformation();
-  addingEmployeebutton();
-  messageShowsToUser();
-  resultdiv();
-}
-function addingh3() {
-  const creatingh3 = document.createElement("h3");
-  creatingh3.setAttribute("id", "myh3Id");
-  creatingh3.innerText = "New Employees";
-  root.append(creatingh3);
-}
-function inputformation() {
-  const inputDiv = document.createElement("div");
-  inputDiv.setAttribute("class", "inputDiv");
-  inputItems.forEach((inputToUser) => {
-    // console.log(inputToUser);
-    inputDiv.innerHTML += `<div class ="ourInputs"><label for="name"> ${inputToUser.title}</label><br>
-    <input type="text" name="name" class = "inputByuser" placeholder="${inputToUser.placeholder}"></div>`;
-  });
-  root.append(inputDiv);
-}
+        const name = document.getElementById('name').value;
+        const profession = document.getElementById('profession').value;
+        const age = document.getElementById('age').value;
 
-function addingEmployeebutton() {
-  const creatingAddingemployeebutton = document.createElement("button");
-  creatingAddingemployeebutton.innerText = "Add Employee";
-  creatingAddingemployeebutton.setAttribute("id", "btnadd");
-  creatingAddingemployeebutton.setAttribute("class", "btn btn-primary");
-  root.append(creatingAddingemployeebutton);
-}
-function messageShowsToUser() {
-  const resultshowingdiv = document.createElement("div");
-  resultshowingdiv.setAttribute("class", "message");
-  resultshowingdiv.innerText = "";
-  root.append(resultshowingdiv);
-}
-
-function resultdiv() {
-  const resultshowingdiv = document.createElement("div");
-  const headingh5 = document.createElement("h5");
-  headingh5.setAttribute("id", "headingh5");
-  resultshowingdiv.setAttribute("class", "result");
-  // resultshowingdiv.innerText ="a"
-  headingh5.innerText = `Added Employees`;
-  root.append(headingh5);
-  root.append(resultshowingdiv);
-}
-
-let btnclickforadd = document.querySelector("#btnadd");
-let i = 0;
-btnclickforadd.addEventListener("click", () => {
-
-  let resultdive = document.querySelector(".result");
-  let message = document.querySelector(".message");
-
-  let inputByuser = document.querySelectorAll(".inputByuser");
-  inputByuser.forEach((input) => {
-    // console.log(input.value);
-  });
-  if (
-    inputByuser[0].value == "" ||
-    inputByuser[1].value == "" ||
-    inputByuser[2].value == ""
-  ) {
-    message.innerText = `please make sure all the fiels fill before adding`;
-  } else {
-    i++;
-    message.innerText = `Success : Employee added`;
-    resultdive.innerHTML += `<div class="liofEmployee" ><div class = "listOfEmployees" id="span0">
-    <span>${i}.</span>
-    <span>Name : ${inputByuser[0].value}</span>
-    <span>Profession : ${inputByuser[1].value}</span>
-    <span>Age:${inputByuser[2].value}</span>
-    </div> 
-    <button class = "btn btn-light my-btn-class">Delete Employee</button>
-    </div>`;
-    inputByuser[0].value = "" ;
-    inputByuser[1].value = "" ;
-    inputByuser[2].value = "" ;
-  }
-  // console.log(i);
+        if (name && profession && age) {
+                const id = employees.length + 1;
+                const employee = { id, name, profession, age };
+                employees.push(employee);
+                displayEmployees();
+                successMessage.style.display = 'block';
+                errorMessage.style.display = 'none';
+                form.reset();
+        } else {
+                successMessage.style.display = 'none';
+                errorMessage.style.display = 'block';
+        }
 });
+
+function displayEmployees() {
+        employeeList.innerHTML = '<h3>Added Employees</h3>';
+        if (employees.length === 0) {
+                employeesMessage.style.display = 'block';
+        } else {
+                employeesMessage.style.display = 'none';
+                employees.forEach(employee => {
+                        const div = document.createElement('div');
+                        div.classList.add('employee');
+                        div.innerHTML = `
+                            <p>${employee.id}</p>
+                            <p><strong>Name:</strong> ${employee.name}</p>
+                            <p><strong>Profession:</strong> ${employee.profession}</p>
+                            <p><strong>Age:</strong> ${employee.age}</p>
+                            <button onclick="deleteEmployee(${employee.id})">Delete User</button>
+                        `;
+                        employeeList.appendChild(div);
+                });
+        }
+}
+
+function deleteEmployee(id) {
+        employees = employees.filter(employee => employee.id !== id);
+        displayEmployees();
+}
